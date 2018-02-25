@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Testing Site</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header"></div>
+    <div class="background container">
+        <div class="container">
+        <h1>Test My RNG</h1>
+        </div>
+    <div id="stopwatch">
+        <div class="counter">Time: 00: 00</div>
+        <div class="container butt">
+            <button type="button" class="btn">Start</button>
+            <button type="button" class="varbutt btn">Stop</button>
+        </div>
+    </div>
+    <div id="loot">
+        <p class="error"></p>
+        <select class="boss" onchange="Input.checkInput();">
+            <option value="empty">Select Your Boss</option>
+        </select>
+    </div>
+    <ol class="drops">
+    </ol>
+    </div>
+    <script src="enemies.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
