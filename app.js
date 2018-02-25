@@ -79,8 +79,8 @@ const Input = {
         for (let i=0; i<currLoot.length; bone ? i+=2 : i++) {
             let li = document.createElement('li');
             (bone) 
-            ? li.innerHTML = `${currBoss.name} dropped ${currLoot[i]} and ${currLoot[i+1]}`
-            : li.innerHTML = `${currBoss.name} dropped ${currLoot[j]}`;
+            ? li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]} and ${currLoot[i+1][1]} ${currLoot[i+1][0]}`
+            : li.innerHTML = `${currBoss.name} dropped ${currLoot[i]}`;
             ol.appendChild(li);
             }
         },
@@ -118,8 +118,8 @@ const Input = {
           }
         }
         for (let i=0; i<Math.floor(currBoss.killsph/4); i++) {
-            if (currBoss.drops[0][2] === 100) {
-                currLoot.push(currBoss.drops[0][0]);
+            if (currBoss.drops[0].rarity === 100) {
+                currLoot.push([currBoss.drops[0].name, 1]);
                 bone = true
             }
             let num = Math.random();
@@ -128,7 +128,8 @@ const Input = {
             if (dropIdx === -1) {
                 dropIdx = dropChance.length-1
             }
-            currLoot.push(currBoss.drops[dropIdx][0])
+            let dropNum = Input.dropAmount(dropIdx);
+            currLoot.push([currBoss.drops[dropIdx].name, dropNum]);   
         }
     },
     setupDropChance: () => {
@@ -137,7 +138,7 @@ const Input = {
         //-100 to get rid of bones or ashes drop
         
         for (let i=0; i<currBoss.drops.length; i++) {
-            let currNum = currTot + currBoss.drops[i][2]
+            let currNum = currTot + currBoss.drops[i].rarity
             currTot = currNum;
             dropChance.push(currNum);            
         }
@@ -156,6 +157,11 @@ const Input = {
             errorDisplay = true;
         }
     },
+    dropAmount: idx => {
+        let min = currBoss.drops[idx].dropAmount[0] || 0;
+        let max = currBoss.drops[idx].dropAmount[1] || 1;
+        return Math.floor(Math.random()*(max-min+1)+min);
+    }
 }
 
 watchDiv.addEventListener( 'click', (e) => { 

@@ -4,64 +4,127 @@ const enemies = [
     killsph: 20,
     rolls: 1,
     drops: [
-            ['Big bones', [1, 1], 100],
-            ['Rune 2h sword', [1, 1], 2/21],
-            ['Rune pickaxe', [1, 1], 2/21],
-            ['Rune longsword', [1, 1], 2/21],
-            ['Rune platebody', [1, 1], 2/21],
-            ['Bandos chestplate', [1, 1], 1/384],
-            ['Bandos tassets', [1, 1], 1/384],
-            ['Bandos boots', [1, 1], 1/384],
-            ['Nature rune', [40, 60], 1/25],
-            ['Adamantite ore', [15, 20], 2/21],
-            ['Coal', [115, 120], 1/10],
-            ['Coins', [19581, 21000], 2/21],
-            ['Snapdragon seed', [1, 1], 1/25],
-            ['Magic log', [15, 20], 1/25],
-            ['Super restore(4)', [3, 3], 1/25],
-            ['Grimy snapdragon', [3, 3], 1/25],
-            ['Clue scroll (elite)', [1, 1], 1/250],
-            ['Godsword shard 1', [1, 1], 1/256],
-            ['Godsword shard 2', [1, 1], 1/256],
-            ['Godsword shard 3', [1, 1], 1/256],
-            ['Long bone', [1, 1], 1/400],
-            ['Bandos hilt', [1, 1], 1/508],
-            ['Godsword shard 1', [1, 1], 1/5000],
-            ['Pet general graardor', [1, 1], 1/5000],
-            ['Rare drop table', [1, 1], 8/127],
-        ],
-        
+            {
+                name: 'Big bones', 
+                dropAmount: [1, 1], 
+                rarity: 100
+            },
+            {
+                name: 'Rune 2h sword', 
+                dropAmount: [1, 1], 
+                rarity: 2/21
+            },
+            {
+                name: 'Rune pickaxe', 
+                dropAmount: [1, 1], 
+                rarity: 2/21
+            },
+            {
+                name: 'Rune longsword',
+                dropAmount: [1, 1],
+                rarity: 2/21,
+            },
+            {
+                name: 'Rune platebody',
+                dropAmount: [1, 1],
+                rarity:  2/21,
+            },
+            {
+                name: 'Bandos chestplate',
+                dropAmount: [1, 1],
+                rarity: 1/384,
+            },
+            {
+                name: 'Bandos tassets',
+                dropAmount: [1, 1],
+                rarity: 1/384,
+            },
+            {
+                name: 'Bandos boots',
+                dropAmount: [1, 1],
+                rarity: 1/384,
+            },
+            {
+                name: 'Nature rune',
+                dropAmount: [40, 60],
+                rarity: 1/25,
+            }, 
+            {
+                name: 'Adamantite ore',
+                dropAmount: [15, 20],
+                rarity: 2/21,
+            }, 
+            {
+                name: 'Coal',
+                dropAmount: [115, 120],
+                rarity: 1/10,
+            }, 
+            {
+                name: 'Coins',
+                dropAmount: [19581, 21000],
+                rarity: 1/10,
+            }, 
+            {
+                name: 'Snapdragon seed',
+                dropAmount: [1, 1],
+                rarity: 1/25,
+            }, 
+            {
+                name: 'Magic log',
+                dropAmount: [15, 20],
+                rarity: 1/25,
+            }, 
+            {
+                name: 'Super restore(4)',
+                dropAmount: [3, 3],
+                rarity: 1/25,
+            }, 
+            {
+                name: 'Grimy snapdragon',
+                dropAmount: [3, 3],
+                rarity: 1/25,
+            }, 
+            {
+                name: 'Clue scroll (elite)',
+                dropAmount: [1, 1],
+                rarity: 1/250,
+            }, 
+            {
+                name: 'Godsword shard 1',
+                dropAmount: [1, 1],
+                rarity: 1/256,
+            }, 
+            {
+                name: 'Godsword shard 2',
+                dropAmount: [1, 1],
+                rarity: 1/256,
+            }, 
+            {
+                name: 'Godsword shard 3',
+                dropAmount: [1, 1],
+                rarity: 1/256,
+            },
+            {
+                name: 'Long bone',
+                dropAmount: [1, 1],
+                rarity: 1/400,
+            },
+            {
+                name: 'Bandos hilt',
+                dropAmount: [1, 1],
+                rarity: 1/508,
+            },
+            {
+                name: 'Pet general graardor',
+                dropAmount: [1, 1],
+                rarity: 1/5000,
+            },
+            {
+                name: 'Rare drop table',
+                dropAmount: [1, 1],
+                rarity: 1/127,
+            },
+        ]
     },
-    {
-    name: 'Jeff',
-    killsph: 20,
-    rolls: 1,
-    drops: [
-            ['Big bones', [1, 1], 100],
-            ['Rune 2h sword', [1, 1], 2/21],
-            ['Rune pickaxe', [1, 1], 2/21],
-            ['Rune longsword', [1, 1], 2/21],
-            ['Rune platebody', [1, 1], 2/21],
-            ['Bandos chestplate', [1, 1], 1/384],
-            ['Bandos tassets', [1, 1], 1/384],
-            ['Bandos boots', [1, 1], 1/384],
-            ['Nature rune', [40, 60], 1/25],
-            ['Adamantite ore', [15, 20], 2/21],
-            ['Coal', [115, 120], 1/10],
-            ['Coins', [19581, 21000], 2/21],
-            ['Snapdragon seed', [1, 1], 1/25],
-            ['Magic log', [15, 20], 1/25],
-            ['Super restore(4)', [3, 3], 1/25],
-            ['Grimy snapdragon', [3, 3], 1/25],
-            ['Clue scroll (elite)', [1, 1], 1/250],
-            ['Godsword shard 1', [1, 1], 1/256],
-            ['Godsword shard 2', [1, 1], 1/256],
-            ['Godsword shard 3', [1, 1], 1/256],
-            ['Long bone', [1, 1], 1/400],
-            ['Bandos hilt', [1, 1], 1/508],
-            ['Godsword shard 1', [1, 1], 1/5000],
-            ['Pet general graardor', [1, 1], 1/5000],
-            ['Rare drop table', [1, 1], 8/127],
-    ]
-    },    
-]
+    
+];
