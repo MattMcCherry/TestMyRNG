@@ -19,7 +19,7 @@ let seconds = 0,
 let currBoss,
     currLoot = [],
     dropChance = [],
-    bone = false,
+    bone = false, //unsure if necessary at this point
     errorDisplay = false;
     
 //setup selection options
@@ -31,28 +31,40 @@ enemies.forEach((enemy,i) => {
 });
 
 const startWatch = () => { 
+    /*
+    if no boss chosen output an error and reset time
+    is possible to have timer going and change to empty value to trigger this hence the reset.
+    */
     if (bossSel.value === 'empty') {
-        if (varButt.textContent === 'Reset') {
-            errorDisplay = false;
-        }
         Input.error();
         resetTime();
     } else {
+        
+    //if the boss is selected and there's an error displaying get rid of it
+        
     if (errorDisplay) {
         errorText.innerHTML = '';
         errorDisplay = false;
     }
+    
+    // every 15 seconds we add loot and reset the currLoot Array
+    // this loot is worked out on Math.floor(kills per hour / 4) 
+
     if (seconds % 15 === 0) {
         Input.addLootToArr();
         Input.appendLoot();
         currLoot = [];
     }
+        
+    // standard counter stuff below
+        
     if ( seconds === 60 ) { 
-        seconds = 0; minutes = minutes + 1; 
+        seconds = 0; minutes += 1; 
     } 
-    mins = ( minutes < 10 ) ? ( '0' + minutes + ': ' ) : ( minutes + ': ' );
-    secs = ( seconds < 10 ) ? ( '0' + seconds ) : ( seconds ); 
-    timeDiv.innerHTML = 'Time: ' + mins + secs; 
+        
+    mins = ( minutes < 10 ) ? ( `0${minutes} : ` ) : ( `${minutes} : ` );
+    secs = ( seconds < 10 ) ? ( `0${seconds}` ) : ( seconds ); 
+    timeDiv.innerHTML = `${mins} ${secs}`; 
     seconds++; 
     clearTime = setTimeout("startWatch()", 10 ); 
     counting = true;
@@ -61,30 +73,35 @@ const startWatch = () => {
 
 const stopTime = () => { 
     if (counting) {
-    clearTimeout(clearTime);
-    counting = false;
+        clearTimeout(clearTime);
+        counting = false;
     }
 }
 
 const resetTime = () => {
     seconds = 0; 
     minutes = 0; 
-    secs = '0' + seconds; 
-    mins = '0' + minutes + ': '; 
-    timeDiv.innerHTML = 'Time: ' + mins + secs; 
+    secs = `0${seconds}`
+    mins = `0${minutes} : `
+    timeDiv.innerHTML = `${mins} ${secs}`; 
 }
 
+//everything to do with RNG bosses, kills & loot
+// v v v v v v v v v v v v v v v v v v v v v v v
 const Input = {
     appendLoot: () => {
         for (let i=0; i<currLoot.length; bone ? i+=2 : i++) {
             let li = document.createElement('li');
             (bone) 
+            //if theres a bone drop say the bone drop and the loot
             ? li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]} and ${currLoot[i+1][1]} ${currLoot[i+1][0]}`
+            //otherwise just say the loot
             : li.innerHTML = `${currBoss.name} dropped ${currLoot[i]}`;
             ol.appendChild(li);
             }
         },
     checkInput: function() {
+        //this method is called on change of the selection box.
         if (varButt.textContent === 'Reset') {
             resetTime();
             Input.resetAll();
@@ -112,19 +129,32 @@ const Input = {
         };
     },
     addLootToArr: () => {
-        const isBigEnough = (value) => {
+        
+        //this function matches the drop rarity up to the random number
+        //by comparing the dropChance array with the random num
+        
+        const isBigEnough = value => {
           return function(element, index, array) {
             return (element >= value);
           }
         }
+        
         for (let i=0; i<Math.floor(currBoss.killsph/4); i++) {
             if (currBoss.drops[0].rarity === 100) {
                 currLoot.push([currBoss.drops[0].name, 1]);
                 bone = true
+                //not sure if bone variable is necessary need more enemy data
             }
             let num = Math.random();
             let drop = dropChance.filter(isBigEnough(num));
             let dropIdx = dropChance.indexOf(drop[0]);
+            /*
+            sometimes the rarity doesn't add up to 1 for
+            the drops, if it is a number outside of the range 
+            such as 99.5% or more sometimes will not be a number
+            currently this effects droprates of certain items.
+            on General Graardor Rare Drop Table is broken
+            */
             if (dropIdx === -1) {
                 dropIdx = dropChance.length-1
             }
@@ -134,8 +164,10 @@ const Input = {
     },
     setupDropChance: () => {
         
-        let currTot = -100 
-        //-100 to get rid of bones or ashes drop
+        let currTot = -100
+        
+        //starting total at -100 to ignore the bones or ashes drop
+        //these drops happen 100% of the time
         
         for (let i=0; i<currBoss.drops.length; i++) {
             let currNum = currTot + currBoss.drops[i].rarity
@@ -144,6 +176,8 @@ const Input = {
         }
     },
     resetAll: () => {
+        //called reset all but doesn't reset errorDisplay
+        //this is for reseting all values and inputs
         dropChance = [], currBoss = [], currLoot = [];
         ol.innerHTML = '';
         bossSel.value = 'empty';        
@@ -158,12 +192,16 @@ const Input = {
         }
     },
     dropAmount: idx => {
+        //min & max values contained in an Array under dropAmount.
         let min = currBoss.drops[idx].dropAmount[0] || 0;
         let max = currBoss.drops[idx].dropAmount[1] || 1;
         return Math.floor(Math.random()*(max-min+1)+min);
     }
-}
+};
+//end of input obj
 
+//setting up event listeners for clicks
+//using textContent for dynamic buttons
 watchDiv.addEventListener( 'click', (e) => { 
     if (e.target.textContent==='Start') {
         if (!counting) {
