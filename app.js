@@ -19,7 +19,7 @@ let seconds = 0,
 let currBoss,
     currLoot = [],
     dropChance = [],
-    bone = false, //unsure if necessary at this point
+    alwaysDrops = [],
     errorDisplay = false;
     
 //setup selection options
@@ -31,10 +31,12 @@ enemies.forEach((enemy,i) => {
 });
 
 const startWatch = () => { 
+    
     /*
     if no boss chosen output an error and reset time
     is possible to have timer going and change to empty value to trigger this hence the reset.
     */
+    
     if (bossSel.value === 'empty') {
         Input.error();
         resetTime();
@@ -90,23 +92,33 @@ const resetTime = () => {
 // v v v v v v v v v v v v v v v v v v v v v v v
 const Input = {
     appendLoot: () => {
-        for (let i=0; i<currLoot.length; bone ? i+=2 : i++) {
+        for (let i=0; i<currLoot.length-currBoss.rolls; i+= currBoss.rolls) {
             let li = document.createElement('li');
-            (bone) 
-            //if theres a bone drop say the bone drop and the loot
-            ? li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]} and ${currLoot[i+1][1]} ${currLoot[i+1][0]}`
-            //otherwise just say the loot
-            : li.innerHTML = `${currBoss.name} dropped ${currLoot[i]}`;
+            let len = currBoss.rolls;
+            if (len === 1) {
+                li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]}`;
+            } else if (len === 2) {
+                li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]} and ${currLoot[i+1][1]} ${currLoot[i+1][0]}`;
+            } else if (len > 2) {
+                li.innerHTML = `${currBoss.name} dropped `;
+                for (let j=0; j<currBoss.rolls-1; j++) {
+                    li.innerHTML += `${currLoot[i+j][1]} ${currLoot[i+j][0]}, `;
+                }
+                li.innerHTML += `and ${currLoot[i+currBoss.rolls-1][1]} ${currLoot[i+currBoss.rolls-1][0]}.`;
+            }
             ol.appendChild(li);
             }
         },
     checkInput: function() {
+        
         //this method is called on change of the selection box.
+        
         if (varButt.textContent === 'Reset') {
             resetTime();
             Input.resetAll();
             varButt.textContent = 'Stop';
         }
+        
         if (counting) {
             if (bossSel.value === "empty") {
                 this.error();
@@ -115,9 +127,11 @@ const Input = {
             resetTime();
             counting = false;
         }
+        
         if (bossSel.value === "empty") {
             this.error();
         }
+        
         if (bossSel.value !== "empty") {
             if (counting) {
                 resetTime();
@@ -125,9 +139,11 @@ const Input = {
             }
             currBoss = enemies[parseInt(bossSel.value)];
             dropChance = [];
+            this.aDrops();
             this.setupDropChance();
         };
     },
+    
     addLootToArr: () => {
         
         //this function matches the drop rarity up to the random number
@@ -138,13 +154,8 @@ const Input = {
             return (element >= value);
           }
         }
-        
         for (let i=0; i<Math.floor(currBoss.killsph/4); i++) {
-            if (currBoss.drops[0].rarity === 100) {
-                currLoot.push([currBoss.drops[0].name, 1]);
-                bone = true
-                //not sure if bone variable is necessary need more enemy data
-            }
+            
             let num = Math.random();
             let drop = dropChance.filter(isBigEnough(num));
             let dropIdx = dropChance.indexOf(drop[0]);
@@ -158,16 +169,33 @@ const Input = {
             if (dropIdx === -1) {
                 dropIdx = dropChance.length-1
             }
+            
             let dropNum = Input.dropAmount(dropIdx);
-            currLoot.push([currBoss.drops[dropIdx].name, dropNum]);   
+            alwaysDrops = [];
+            Input.aDrops();
+            alwaysDrops.forEach(alwaysdrop => currLoot.push(alwaysdrop));            
+            currLoot.push([currBoss.drops[dropIdx].name, dropNum]);
+        }
+    },
+    
+    aDrops: () =>{
+    let checkingAlways = true;
+        let i=0;
+        while (checkingAlways) {            
+            if (currBoss.drops[i].rarity === 100) {
+                alwaysDrops.push([currBoss.drops[i].name, Input.dropAmount(i)]);
+            } else {
+                checkingAlways = false;
+            }
+            i++
         }
     },
     setupDropChance: () => {
         
-        let currTot = -100
+        let currTot = 0 - (alwaysDrops.length*100);
         
-        //starting total at -100 to ignore the bones or ashes drop
-        //these drops happen 100% of the time
+        // starting total at -100 per drop that is guarenteed 
+        // to ignore the bones or ashes drop
         
         for (let i=0; i<currBoss.drops.length; i++) {
             let currNum = currTot + currBoss.drops[i].rarity
@@ -178,7 +206,7 @@ const Input = {
     resetAll: () => {
         //called reset all but doesn't reset errorDisplay
         //this is for reseting all values and inputs
-        dropChance = [], currBoss = [], currLoot = [];
+        dropChance = [], currBoss = [], currLoot = [], alwaysDrops = [], currTot=0;
         ol.innerHTML = '';
         bossSel.value = 'empty';        
     },
@@ -198,6 +226,7 @@ const Input = {
         return Math.floor(Math.random()*(max-min+1)+min);
     }
 };
+// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 //end of input obj
 
 //setting up event listeners for clicks

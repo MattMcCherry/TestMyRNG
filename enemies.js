@@ -2,7 +2,7 @@ const enemies = [
     {
     name: 'General Graardor',
     killsph: 20,
-    rolls: 1,
+    rolls: 2,
     drops: [
             {
                 name: 'Big bones', 
@@ -129,7 +129,7 @@ const enemies = [
     {
     name: `Kree'arra`,
     killsph: 20,
-    rolls: 1,
+    rolls: 3,
     drops: [
             {
                 name: 'Big bones', 
@@ -184,12 +184,12 @@ const enemies = [
             {
                 name: 'Mind rune',
                 dropAmount: [500, 601],
-                rarity: 1/64, //uncommon
+                rarity: 1/64, 
             }, 
             {
                 name: 'Rune arrow',
                 dropAmount: [100, 105],
-                rarity: 1/64, //uncommon
+                rarity: 1/64, 
             }, 
             {
                 name: 'Dragonstone bolts(e)',
@@ -281,7 +281,7 @@ const enemies = [
     {
     name: `Kril Tsutsaroth`,
     killsph: 20,
-    rolls: 1,
+    rolls: 2,
     drops: [
             {
                 name: 'Ashes', 
@@ -428,7 +428,7 @@ const enemies = [
     {
     name: `Commander Zilyana`,
     killsph: 20,
-    rolls: 1,
+    rolls: 2,
     drops: [
             {
                 name: 'Bones', 
@@ -570,7 +570,7 @@ const enemies = [
     {
     name: `Giant Mole`,
     killsph: 20,
-    rolls: 1,
+    rolls: 4,
     drops: [
             {
                 name: 'Big bones', 
