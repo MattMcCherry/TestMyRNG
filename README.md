@@ -10,3 +10,4 @@ Things to do:
     - have kills per hour an optional input
     - dynamically create table for drops
     - total gp made
+    - check how many drops are ALWAYS
