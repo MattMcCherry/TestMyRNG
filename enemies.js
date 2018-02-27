@@ -498,7 +498,7 @@ const enemies = [
             {
                 name: 'Saradomin sword',
                 id: 11838,
-                dropAmount: [295, 300], 
+                dropAmount: [1, 1], 
                 rarity: 1/127
             },
             {
