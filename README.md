@@ -6,8 +6,6 @@ Inital build of site, simple layout completed just for now whilst testing. Later
 
 Things to do:
     - add more bosses
-    - add drop amounts
     - have kills per hour an optional input
     - dynamically create table for drops
     - total gp made
-    - check how many drops are ALWAYS

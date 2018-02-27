@@ -30,6 +30,33 @@ enemies.forEach((enemy,i) => {
                 bossSel.appendChild(option);
 });
 
+// this accesses the Runescape API to get the value of each item dynamically
+// the RS API returns a JSON obj with current prices & other useful properties
+        
+let currPrices;
+
+//IIFE to get prices straight away
+
+(function fetchItemPrice() {
+    fetch(`https://rsbuddy.com/exchange/summary.json`)
+    .then(res => res.json())
+    .then(data => { currPrices = data; setPrices() })
+    .catch(err => { throw err });
+}());
+
+// to set up prices we want to add a property to each item in the enemies object
+
+function setPrices() {
+enemies.forEach(enemy => {
+                    enemy.drops.forEach(item => {
+                        const idThis = item.id
+                        if (idThis !== undefined) {
+                            item.price = currPrices[idThis].buy_average;
+                        }
+                                          })
+});
+}
+
 const startWatch = () => { 
     
     /*
@@ -173,8 +200,10 @@ const Input = {
             let dropNum = Input.dropAmount(dropIdx);
             alwaysDrops = [];
             Input.aDrops();
-            alwaysDrops.forEach(alwaysdrop => currLoot.push(alwaysdrop));            
-            currLoot.push([currBoss.drops[dropIdx].name, dropNum]);
+            alwaysDrops.forEach(alwaysdrop => currLoot.push(alwaysdrop));      
+            currLoot.push([currBoss.drops[dropIdx].name, dropNum, currBoss.drops[dropIdx].id || -1]);
+            // or -1 for those without a  id value (coins, rare drop table 
+            // and some others that we will ignore)
         }
     },
     
@@ -183,7 +212,7 @@ const Input = {
         let i=0;
         while (checkingAlways) {            
             if (currBoss.drops[i].rarity === 100) {
-                alwaysDrops.push([currBoss.drops[i].name, Input.dropAmount(i)]);
+                alwaysDrops.push([currBoss.drops[i].name, Input.dropAmount(i), currBoss.drops[i].id]);
             } else {
                 checkingAlways = false;
             }
@@ -224,13 +253,21 @@ const Input = {
         let min = currBoss.drops[idx].dropAmount[0] || 0;
         let max = currBoss.drops[idx].dropAmount[1] || 1;
         return Math.floor(Math.random()*(max-min+1)+min);
-    }
+    },
+    
+    // dynamic properties not just prices (e.g. we can also access icon data)
+    
+    setupDynamicProperties: () => {
+        
+    },
 };
 // ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 //end of input obj
 
-//setting up event listeners for clicks
-//using textContent for dynamic buttons
+
+
+// setting up event listeners for clicks
+// using textContent for dynamic buttons
 watchDiv.addEventListener( 'click', (e) => { 
     if (e.target.textContent==='Start') {
         if (!counting) {
