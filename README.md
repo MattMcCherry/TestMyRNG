@@ -6,7 +6,6 @@ Things to do:
     - add more bosses
     - have kills per hour an optional input
     - dynamically create table for drops
-    - total gp made
     
 Cleanup to do:
     - clean enemies.js (use api instead)

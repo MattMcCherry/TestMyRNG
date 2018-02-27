@@ -1,0 +1,131 @@
+@font-face {
+    font-family: "Runescape_uf";
+    src: url('./fonts/runescape_uf.ttf') format('truetype'),
+        url('./fonts/runescape_uf.woff');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    font-family: Runescape_uf, "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #fff200;
+    letter-spacing: 1.5px;
+    background-color: black;
+}
+
+.header {
+    background-color: #54c0d6;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%232353b0' fill-opacity='0.42' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    min-height: 30px;
+}
+
+select {
+    background-color: #473f34;
+    color: #d8985b;
+    max-width: 75%;
+    border-bottom:  3px solid rgba(0,0,0,.7);
+    border-right: 3px solid rgba(0,0,0,.7);
+}
+.bossContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 32px;
+    text-shadow: 2px 2px #333;
+    margin-top: 100%;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+h1 span {
+    color: white;
+}
+
+.background {
+    background-color: black;
+}
+
+#stopwatch {
+    min-width: 225px;
+    width: 25%;
+    padding: 5px;
+    background-color: #493d3d;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    border-bottom:  3px solid rgba(0,0,0,.7);
+    border-right: 3px solid rgba(0,0,0,.7);
+}
+
+.counter {
+    display:block;
+    min-height: 20px;
+    margin: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#stopwatch button {
+    margin: 0 5px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container .butt {
+    flex-direction:row;
+    margin: 0 auto;
+}
+
+.container .butt button {
+    flex-grow: 1;
+}
+
+.container .butt button:last-child {
+    flex-grow: 1;
+    background: rgba(0,0,0,.1);
+}
+
+.container .butt button:hover {
+    background: #56472c;
+    text-decoration: none;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+#loot {
+    
+}
+
+.btn {
+    color: white;
+    border: 3px solid rgba(0,0,0,.7);
+    background: rgba(0,0,0,.7);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    text-shadow: 2px 2px #333;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}

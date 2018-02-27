@@ -1,35 +1,33 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
-    <title>Testing Site</title>
+    <title>Test My RNG</title>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="header"></div>
     <div class="background container">
-        <div class="container">
-        <h1>Test My RNG</h1>
-        </div>
-    <div id="stopwatch">
-        <div class="counter">00: 00</div>
-        <div class="container butt">
-            <button type="button" class="btn">Start</button>
-            <button type="button" class="varbutt btn">Stop</button>
-        </div>
-    </div>
-    <div id="loot">
-        <p class="error"></p>
-        <select class="boss" onchange="Input.checkInput();">
-            <option value="empty">Select Your Boss</option>
-        </select>
-        <p class="total">0gp</p>
-    </div>
-    <ol class="drops">
-    </ol>
+            <div class="container">
+                <h1><span>Test My</span> RNG</h1>
+            </div>
+            <div id="stopwatch">
+            <div class="counter">00: 00</div>
+            <div class="container butt">
+                <button type="button" class="btn">START</button>
+                <button type="button" class="varbutt btn">STOP</button>
+            </div>
+                <p class="error"></p>
+                <div class="bossContainer">
+                    <select class="boss" onchange="Input.checkInput();">
+                        <option value="empty">Select Your Boss</option>
+                    </select>
+                </div>
+                <p class="total">0gp</p>
+            </div>
+        <ol class="drops">
+        </ol>
     </div>
     <script src="enemies.js"></script>
     <script src="app.js"></script>

@@ -152,10 +152,10 @@ const Input = {
         
         //this method is called on change of the selection box.
         
-        if (varButt.textContent === 'Reset') {
+        if (varButt.textContent === 'RESET') {
             resetTime();
             Input.resetAll();
-            varButt.textContent = 'Stop';
+            varButt.textContent = 'STOP';
         }
         
         if (counting) {
@@ -222,6 +222,7 @@ const Input = {
     },
     
     getGPAmount: () => {
+        console.log(currLoot);
         totalGP += currLoot.reduce((acc, drop) => acc+drop[2]*drop[1], 0)
         console.log(totalGP);
     },   
@@ -288,22 +289,22 @@ const Input = {
 // setting up event listeners for clicks
 // using textContent for dynamic buttons
 watchDiv.addEventListener( 'click', (e) => { 
-    if (e.target.textContent==='Start') {
+    if (e.target.textContent==='START') {
         if (!counting) {
             startWatch();
-            varButt.textContent = 'Stop';
+            varButt.textContent = 'STOP';
         }
     } 
-    if (e.target.textContent==='Reset') {
+    if (e.target.textContent==='RESET') {
         if (!counting) {
             resetTime();
             Input.resetAll();
-            e.target.textContent = 'Stop';
+            e.target.textContent = 'STOP';
         }
-    } else if (e.target.textContent==='Stop') {
+    } else if (e.target.textContent==='STOP') {
         if (counting) {
             stopTime();
-            e.target.textContent = 'Reset';
+            e.target.textContent = 'RESET';
         }
     }
 });

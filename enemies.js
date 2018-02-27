@@ -74,6 +74,7 @@ const enemies = [
                 name: 'Coins',
                 dropAmount: [19581, 21000],
                 rarity: 1/10,
+                price: 1,
             }, 
             {
                 name: 'Snapdragon seed',
@@ -232,6 +233,7 @@ const enemies = [
                 name: 'Coins',
                 dropAmount: [18000, 21000],
                 rarity: 2/21,
+                price: 1,
             }, 
             {
                 name: 'Rare drop table',
@@ -328,7 +330,8 @@ const enemies = [
             {
                 name: 'Ashes', 
                 dropAmount: [1, 1], 
-                rarity: 100
+                rarity: 100,
+                price: 1,
             },
             {
                 name: 'Adamant arrow(p++)',
@@ -418,6 +421,7 @@ const enemies = [
                 name: 'Coins',
                 dropAmount: [19362, 20073],
                 rarity: 2/21,
+                price: 1,
             }, 
             {
                 name: 'Rare drop table',
@@ -595,6 +599,7 @@ const enemies = [
                 name: 'Coins',
                 dropAmount: [19362, 20073],
                 rarity: 2/21,
+                price: 1,
             }, 
             {
                 name: 'Diamond',
