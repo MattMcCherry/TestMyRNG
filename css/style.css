@@ -70,10 +70,60 @@ h1 span {
 .counter {
     display:block;
     min-height: 20px;
-    margin: 10px 0;
+    padding: 50px 0;
+    border-bottom: 1px solid #d8985b;
+    margin-bottom: 10px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
+    z-index: 2;
+    
+}
+
+.spinnerContainer {
+    display: block;
+    margin: 0 auto;
+    z-index:1;
+    width: 100px;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 50%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fff200+0,000000+100&1+0,0+77 */
+    background: -moz-linear-gradient(top, rgba(255,242,0,1) 0%, rgba(59,56,0,0.5) 77%, rgba(0,0,0,0.2) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,242,0,1) 0%,rgba(59,56,0,0.5) 77%,rgba(0,0,0,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,242,0,1) 0%,rgba(59,56,0,0.5) 77%,rgba(0,0,0,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff200', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+.spinner:after {
+    position: absolute;
+    display: block;
+    background:#493d3d;
+    top: 5px;
+    left: 5px;
+    width: 90px;
+    height: 90px;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.spinnerAnim {
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    from {}
+    to {
+        transform: rotate(360deg);
+    }
+    }
 }
 
 #stopwatch button {
@@ -128,4 +178,5 @@ li {
     text-shadow: 2px 2px #333;
     font-weight: bold;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0 5px;
 }

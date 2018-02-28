@@ -5,7 +5,8 @@ const varButt = document.querySelector(".varButt");
 const bossSel = document.querySelector(".boss");
 const ol = document.querySelector(".drops");
 const errorText = document.querySelector(".error");
-const totalP = document.querySelector('.total')
+const totalP = document.querySelector('.total');
+const spinner = document.querySelector('.spinner');
 
 //setup vars for timer
 let seconds = 0,
@@ -60,6 +61,7 @@ enemies.forEach(enemy => {
                                           })
 });
 }
+let count=0;
 
 const startWatch = () => { 
     
@@ -92,9 +94,10 @@ const startWatch = () => {
     }
         
     // standard counter stuff below
-        
+        count++
     if ( seconds === 60 ) { 
         seconds = 0; minutes += 1; 
+        console.log(count)
     } 
         
     mins = ( minutes < 10 ) ? ( `0${minutes} : ` ) : ( `${minutes} : ` );
@@ -292,6 +295,7 @@ watchDiv.addEventListener( 'click', (e) => {
     if (e.target.textContent==='START') {
         if (!counting) {
             startWatch();
+            spinner.className += ' spinnerAnim';
             varButt.textContent = 'STOP';
         }
     } 
@@ -303,6 +307,7 @@ watchDiv.addEventListener( 'click', (e) => {
         }
     } else if (e.target.textContent==='STOP') {
         if (counting) {
+            spinner.className = 'spinner';
             stopTime();
             e.target.textContent = 'RESET';
         }
