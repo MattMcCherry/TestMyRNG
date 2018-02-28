@@ -71,6 +71,7 @@ const startWatch = () => {
     */
     
     if (bossSel.value === 'empty') {
+        spinner.className = 'spinner';
         Input.error();
         resetTime();
     } else {
@@ -294,8 +295,8 @@ const Input = {
 watchDiv.addEventListener( 'click', (e) => { 
     if (e.target.textContent==='START') {
         if (!counting) {
-            startWatch();
             spinner.className += ' spinnerAnim';
+            startWatch();            
             varButt.textContent = 'STOP';
         }
     } 

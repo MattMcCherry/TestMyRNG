@@ -71,13 +71,16 @@ h1 span {
     display:block;
     min-height: 20px;
     padding: 50px 0;
-    border-bottom: 1px solid #d8985b;
     margin-bottom: 10px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
     z-index: 2;
-    
+}
+
+.lineBreak {
+    border-bottom: 2px solid #d8985b;
+    margin: 10px 0;
 }
 
 .spinnerContainer {
@@ -142,6 +145,7 @@ h1 span {
 .container .butt {
     flex-direction:row;
     margin: 0 auto;
+    max-width: 250px;
 }
 
 .container .butt button {
@@ -162,8 +166,17 @@ li {
     margin-bottom: 5px;
 }
 
-#loot {
-    
+.inputs {
+    margin: 5px;
+    background-color: rgba(219,203,163, 0.3);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.total {
+    background: rgba(0,0,0,0.5);
+    margin: 10px 5px 5px;
+    padding: 1em 0;
 }
 
 .btn {

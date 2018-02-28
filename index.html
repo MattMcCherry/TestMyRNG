@@ -16,17 +16,20 @@
                 <div class="spinnerContainer">
                     <div class="spinner"></div>
                 </div>  
-                <div class="counter">00: 00</div>  
-                    <div class="container butt">
-                        <button type="button" class="btn">START</button>
-                        <button type="button" class="varbutt btn">STOP</button>
+                <div class="counter lineBreak">00: 00</div> 
+                    <div class="inputs">
+                        <div class="container butt">
+                            <button type="button" class="btn">START</button>
+                            <button type="button" class="varbutt btn">STOP</button>
+                        </div>
+                    <p class="error"></p>
+                    <div class="bossContainer">
+                        <select class="boss" onchange="Input.checkInput();">
+                            <option value="empty">Select Your Boss</option>
+                        </select>
                     </div>
-                <p class="error"></p>
-                <div class="bossContainer">
-                    <select class="boss" onchange="Input.checkInput();">
-                        <option value="empty">Select Your Boss</option>
-                    </select>
                 </div>
+                <div class="lineBreak"></div>
                 <p class="total">0gp</p>
             </div>
         <ol class="drops">
