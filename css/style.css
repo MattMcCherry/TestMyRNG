@@ -17,7 +17,7 @@ body {
     font-family: Runescape_uf, "Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fff200;
     letter-spacing: 1.5px;
-    background-color: black;
+    background-color: #212121;
 }
 
 .header {
@@ -42,7 +42,7 @@ select {
 h1 {
     font-size: 32px;
     text-shadow: 2px 2px #333;
-    margin-top: 100%;
+    margin-top: 100px;
     font-weight: 600;
     letter-spacing: 3px;
 }
@@ -51,13 +51,22 @@ h1 span {
     color: white;
 }
 
-.background {
-    background-color: black;
-}
-
 #stopwatch {
     min-width: 225px;
     width: 25%;
+    padding: 10px 5px 5px;
+    margin-bottom: 10px;
+    background-color: #493d3d;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    border-bottom:  3px solid rgba(0,0,0,.7);
+    border-right: 3px solid rgba(0,0,0,.7);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+
+.lootTable {
+    min-width: 615px;
     padding: 5px;
     background-color: #493d3d;
     display: flex;
@@ -65,13 +74,37 @@ h1 span {
     border-radius: 6px;
     border-bottom:  3px solid rgba(0,0,0,.7);
     border-right: 3px solid rgba(0,0,0,.7);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+
+.lootTable tr {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.lootTable td {
+    min-width: 38px;
+    width: 50px;
+    height: 100px;
+}
+
+.lootTable td:nth-child(even) {
+    background-color: rgba(219,203,163, 0.3);
+}
+
+.itemDisplay {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemDisplay img {
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .counter {
     display:block;
     min-height: 20px;
     padding: 50px 0;
-    margin-bottom: 10px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;

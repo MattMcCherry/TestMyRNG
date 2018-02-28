@@ -72,6 +72,7 @@ const enemies = [
             }, 
             {
                 name: 'Coins',
+                link: 'Coins',
                 dropAmount: [19581, 21000],
                 rarity: 1/10,
                 price: 1,
@@ -102,6 +103,7 @@ const enemies = [
             }, 
             {
                 name: 'Clue scroll (elite)',
+                link: 'Clue_scroll',
                 dropAmount: [1, 1],
                 rarity: 1/250,
             }, 
@@ -125,6 +127,7 @@ const enemies = [
             },
             {
                 name: 'Long bone',
+                link: 'Long_bone',
                 dropAmount: [1, 1],
                 rarity: 1/400,
             },
@@ -136,11 +139,13 @@ const enemies = [
             },
             {
                 name: 'Pet general graardor',
+                link: `Pet_general_graardor`,
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },
             {
                 name: 'Rare drop table',
+                link: 'Rare_drop_table',
                 dropAmount: [1, 1],
                 rarity: 1/127,
             },
@@ -231,12 +236,14 @@ const enemies = [
             }, 
             {
                 name: 'Coins',
+                link: 'Coins',
                 dropAmount: [18000, 21000],
                 rarity: 2/21,
                 price: 1,
             }, 
             {
                 name: 'Rare drop table',
+                link: 'Rare_drop_table',
                 dropAmount: [1, 1],
                 rarity: 8/127,
             }, 
@@ -278,6 +285,7 @@ const enemies = [
             }, 
             {
                 name: 'Clue scroll (elite)',
+                link: 'Clue_scroll',
                 dropAmount: [1, 1],
                 rarity: 1/250,
             }, 
@@ -301,6 +309,7 @@ const enemies = [
             },
             {
                 name: 'Long bone',
+                link: 'Long_bone',
                 dropAmount: [1, 1],
                 rarity: 1/400,
             },
@@ -312,11 +321,13 @@ const enemies = [
             },
             {
                 name: `Pet kree'arra`,
+                link: `Pet_kree'arra`,
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },
             {
                 name: `Curved bone`,
+                link: 'Curved_bone',
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },
@@ -329,6 +340,7 @@ const enemies = [
     drops: [
             {
                 name: 'Ashes', 
+                link: `Ashes`,
                 dropAmount: [1, 1], 
                 rarity: 100,
                 price: 1,
@@ -419,32 +431,38 @@ const enemies = [
             }, 
             {
                 name: 'Coins',
+                link: 'Coins',
                 dropAmount: [19362, 20073],
                 rarity: 2/21,
                 price: 1,
             }, 
             {
                 name: 'Rare drop table',
+                link: 'Rare_drop_table',
                 dropAmount: [1, 1],
                 rarity: 8/127,
             }, 
             {
                 name: 'Blood rune',
+                id: 565,
                 dropAmount: [80, 90],
                 rarity: 1/64,
             }, 
             {
                 name: 'Grimy lantadyme',
+                id: 2485,
                 dropAmount: [7, 13],
                 rarity: 1/64,
             }, 
             {
                 name: 'Lantadyme seed',
+                id: 5302,
                 dropAmount: [3, 3],
                 rarity: 1/64, 
             }, 
             {
                 name: 'Clue scroll (elite)',
+                link: 'Clue_scroll',
                 dropAmount: [1, 1],
                 rarity: 1/250,
             }, 
@@ -468,21 +486,25 @@ const enemies = [
             },
             {
                 name: 'Long bone',
+                link: 'Long_bone',
                 dropAmount: [1, 1],
                 rarity: 1/400,
             },
             {
                 name: 'Zamorak hilt',
+                id: 11816,
                 dropAmount: [1, 1],
                 rarity: 1/508,
             },
             {
                 name: `Pet k'ril tsutsaroth`,
+                link: `Pet_k'ril_tsutsaroth`,
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },
             {
                 name: `Curved bone`,
+                link: 'Curved_bone',
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },
@@ -597,6 +619,7 @@ const enemies = [
             }, 
             {
                 name: 'Coins',
+                link: 'Coins',
                 dropAmount: [19362, 20073],
                 rarity: 2/21,
                 price: 1,
@@ -609,6 +632,7 @@ const enemies = [
             }, 
             {
                 name: 'Rare drop table',
+                link: 'Rare_drop_table',
                 dropAmount: [1, 1],
                 rarity: 8/127,
             }, 
@@ -620,6 +644,7 @@ const enemies = [
             }, 
             {
                 name: 'Clue scroll (elite)',
+                link: 'Clue_scroll',
                 dropAmount: [1, 1],
                 rarity: 1/250,
             }, 
@@ -643,11 +668,13 @@ const enemies = [
             },
             {
                 name: 'Saradomin hilt',
+                id: 11814,
                 dropAmount: [1, 1],
                 rarity: 1/508,
             },
             {
                 name: `Pet zilyana`,
+                link: `Pet_zilyana`,
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },
@@ -780,39 +807,25 @@ const enemies = [
             }, 
             {
                 name: 'Long bone',
+                link: 'Long_bone',
                 dropAmount: [1, 1],
                 rarity: 1/400,
             }, 
             {
                 name: `Baby mole`,
+                link: `Baby_mole`,
                 dropAmount: [1, 1],
                 rarity: 1/3000,
             }, 
             {
                 name: 'Clue scroll (elite)',
+                link: 'Clue_scroll',
                 dropAmount: [1, 1],
                 rarity: 1/500,
             }, 
             {
-                name: 'Godsword shard 1',
-                id: 11818,
-                dropAmount: [1, 1],
-                rarity: 1/256,
-            }, 
-            {
-                name: 'Godsword shard 2',
-                id: 11820,
-                dropAmount: [1, 1],
-                rarity: 1/256,
-            }, 
-            {
-                name: 'Godsword shard 3',
-                id: 11822,
-                dropAmount: [1, 1],
-                rarity: 1/256,
-            },
-            {
                 name: 'Curved bone',
+                link: 'Curved_bone',
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },

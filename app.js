@@ -1,4 +1,5 @@
 //changing elements on page
+const bgCont = document.querySelector('.background');
 const timeDiv = document.querySelector(".counter");
 const watchDiv = document.getElementById("stopwatch");
 const varButt = document.querySelector(".varButt");
@@ -23,6 +24,8 @@ let currBoss,
     dropChance = [],
     alwaysDrops = [],
     errorDisplay = false,
+    showingTable = false,
+    currTot = 0,
     totalGP = 0;
     
 //setup selection options
@@ -61,7 +64,6 @@ enemies.forEach(enemy => {
                                           })
 });
 }
-let count=0;
 
 const startWatch = () => { 
     
@@ -95,10 +97,8 @@ const startWatch = () => {
     }
         
     // standard counter stuff below
-        count++
     if ( seconds === 60 ) { 
         seconds = 0; minutes += 1; 
-        console.log(count)
     } 
         
     mins = ( minutes < 10 ) ? ( `0${minutes} : ` ) : ( `${minutes} : ` );
@@ -127,6 +127,83 @@ const resetTime = () => {
 
 //everything to do with RNG bosses, kills & loot
 // v v v v v v v v v v v v v v v v v v v v v v v
+const Output = {
+    tableCreation: size => {
+        
+        let table = document.createElement('table');
+        let tr1 = document.createElement('tr');
+        let tr2 = document.createElement('tr');
+
+        
+        let i=0;
+        
+        for (i; i<size/2; i++) {
+            let id = currBoss.drops[i].id || currBoss.drops[i].link;
+            
+            let td1 = document.createElement('td');
+            
+            let div1 = document.createElement('div');
+            let itemAmount1 = document.createElement('p');
+            
+            div1.innerHTML = `<img src="./imgs/icons/${id}.png">`;
+            div1.className = `itemDisplay`;
+            itemAmount1.textContent = '0'
+            itemAmount1.className = `${id}`
+            
+            div1.appendChild(itemAmount1)
+            
+            td1.appendChild(div1);
+            tr1.appendChild(td1);
+        }
+        let j = i;
+        
+        for (i; i<size; i++) {
+            let id = currBoss.drops[i].id;
+            
+            if (id === undefined) {
+                id = currBoss.drops[i].link;
+            }
+            
+            let td2 = document.createElement('td');
+            
+            let div2 = document.createElement('div');
+            let itemAmount2 = document.createElement('p');
+            
+            div2.innerHTML = `<img src="./imgs/icons/${id}.png">`;
+            div2.className = `itemDisplay`;
+            itemAmount2.textContent = '0'
+            itemAmount2.className = `tableP ${id}`
+            
+            div2.appendChild(itemAmount2)
+            
+            td2.appendChild(div2);
+            tr2.appendChild(td2);
+            console.log(j);
+            console.log(i);
+            if (i===(size-1)) {
+                if (Math.ceil(i/2) !== j) {
+                    let emptyTd = document.createElement('td');
+                    tr2.appendChild(emptyTd);
+                }
+            }
+        }
+        
+        if ((i-1)-j !== 0) {
+            let emptyTd = document.createElement('td');
+
+        }
+        
+        table.appendChild(tr1);
+        table.appendChild(tr2);        
+        
+        table.className = 'lootTable';
+        bgCont.insertBefore(table, ol);
+        
+        showingTable=true;
+        
+    }
+}
+
 const Input = {
     
     appendLoot: () => {
@@ -156,9 +233,11 @@ const Input = {
         
         //this method is called on change of the selection box.
         
+        
         if (varButt.textContent === 'RESET') {
             resetTime();
-            Input.resetAll();
+            this.resetAll();
+            bossSel.value = 'empty';   
             varButt.textContent = 'STOP';
         }
         
@@ -179,11 +258,19 @@ const Input = {
             if (counting) {
                 resetTime();
                 this.resetAll();
+                bossSel.value = 'empty';   
             }
+            
+            if (showingTable) {
+                let lootTable = document.querySelector('.lootTable');
+                bgCont.removeChild(lootTable);
+                showingTable=false;
+            }   
+            this.resetAll();
             currBoss = enemies[parseInt(bossSel.value)];
-            dropChance = [];
             this.aDrops();
             this.setupDropChance();
+            Output.tableCreation(currBoss.drops.length);
         };
     },
     
@@ -225,10 +312,8 @@ const Input = {
         }
     },
     
-    getGPAmount: () => {
-        console.log(currLoot);
-        totalGP += currLoot.reduce((acc, drop) => acc+drop[2]*drop[1], 0)
-        console.log(totalGP);
+    getGPAmount: () => { 
+        totalGP += currLoot.reduce((acc, drop) => acc+drop[2]*drop[1], 0);
     },   
     
     aDrops: () =>{
@@ -246,7 +331,7 @@ const Input = {
     
     setupDropChance: () => {
         
-        let currTot = 0 - (alwaysDrops.length*100);
+        currTot = 0 - (alwaysDrops.length*100);
         
         // starting total at -100 per drop that is guarenteed 
         // to ignore the bones or ashes drop
@@ -260,12 +345,11 @@ const Input = {
     
     resetAll: () => {
         //called reset all but doesn't reset errorDisplay
-        //this is for reseting all values and inputs
+        //this is for reseting all values & input
+        
         dropChance = [], currBoss = [], currLoot = [], alwaysDrops = [], currTot=0, totalGP=0;
         ol.innerHTML = '';
         totalP.innerHTML = '0gp';
-        bossSel.value = 'empty';   
-        
     },
     
     error: () => {
@@ -302,8 +386,14 @@ watchDiv.addEventListener( 'click', (e) => {
     } 
     if (e.target.textContent==='RESET') {
         if (!counting) {
+            if (showingTable) {
+                let lootTable = document.querySelector('.lootTable');
+                bgCont.removeChild(lootTable);
+                showingTable = false;
+            }
             resetTime();
             Input.resetAll();
+            bossSel.value = 'empty';   
             e.target.textContent = 'STOP';
         }
     } else if (e.target.textContent==='STOP') {
