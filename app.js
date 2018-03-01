@@ -144,13 +144,19 @@ const Output = {
             
             let div1 = document.createElement('div');
             let itemAmount1 = document.createElement('p');
+            let span1 = document.createElement('span');
             
             div1.innerHTML = `<img src="./imgs/icons/${id}.png">`;
-            div1.className = `itemDisplay`;
-            itemAmount1.textContent = '0'
-            itemAmount1.className = `${currBoss.drops[i].link}`
+            div1.className = `itemDisplay tooltip`;
             
-            div1.appendChild(itemAmount1)
+            itemAmount1.textContent = '0';
+            itemAmount1.className = `${currBoss.drops[i].link}`;
+            
+            span1.className = `tooltiptext`;
+            span1.textContent = `${currBoss.drops[i].name}`;
+            
+            div1.appendChild(itemAmount1);
+            div1.appendChild(span1);
             
             td1.appendChild(div1);
             tr1.appendChild(td1);
@@ -168,13 +174,19 @@ const Output = {
             
             let div2 = document.createElement('div');
             let itemAmount2 = document.createElement('p');
+            let span2 = document.createElement('span');
             
             div2.innerHTML = `<img src="./imgs/icons/${id}.png">`;
-            div2.className = `itemDisplay`;
+            div2.className = `itemDisplay tooltip`;
+            
+            span2.className = `tooltiptext`;
+            span2.textContent = `${currBoss.drops[i].name}`
+            
             itemAmount2.textContent = '0'
             itemAmount2.className = `${currBoss.drops[i].link}`
             
             div2.appendChild(itemAmount2)
+            div2.appendChild(span2);
             
             td2.appendChild(div2);
             tr2.appendChild(td2);
