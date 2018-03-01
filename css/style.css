@@ -12,6 +12,10 @@ p {
     text-align: center;
 }
 
+.fontSmall {
+    font-size: 12px;
+}
+
 body {
     margin: 0;
     font-family: Runescape_uf, "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -29,7 +33,6 @@ body {
 select {
     background-color: #473f34;
     color: #d8985b;
-    max-width: 75%;
     border-bottom:  3px solid rgba(0,0,0,.7);
     border-right: 3px solid rgba(0,0,0,.7);
 }
@@ -129,9 +132,9 @@ h1 span {
     position: absolute;
     border-radius: 50%;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fff200+0,000000+100&1+0,0+77 */
-    background: -moz-linear-gradient(top, rgba(255,242,0,1) 0%, rgba(59,56,0,0.5) 77%, rgba(0,0,0,0.2) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(255,242,0,1) 0%,rgba(59,56,0,0.5) 77%,rgba(0,0,0,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(255,242,0,1) 0%,rgba(59,56,0,0.5) 77%,rgba(0,0,0,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: -moz-linear-gradient(top, rgba(255,242,0,1) 0%, rgba(59,56,0,0.5) 77%, rgba(0,0,0,0.4) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,242,0,1) 0%,rgba(59,56,0,0.5) 77%,rgba(0,0,0,0.4) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,242,0,1) 0%,rgba(59,56,0,0.5) 77%,rgba(0,0,0,0.4) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff200', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
 

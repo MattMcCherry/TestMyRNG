@@ -148,7 +148,7 @@ const Output = {
             div1.innerHTML = `<img src="./imgs/icons/${id}.png">`;
             div1.className = `itemDisplay`;
             itemAmount1.textContent = '0'
-            itemAmount1.className = `${id}`
+            itemAmount1.className = `${currBoss.drops[i].link}`
             
             div1.appendChild(itemAmount1)
             
@@ -172,14 +172,12 @@ const Output = {
             div2.innerHTML = `<img src="./imgs/icons/${id}.png">`;
             div2.className = `itemDisplay`;
             itemAmount2.textContent = '0'
-            itemAmount2.className = `tableP ${id}`
+            itemAmount2.className = `${currBoss.drops[i].link}`
             
             div2.appendChild(itemAmount2)
             
             td2.appendChild(div2);
             tr2.appendChild(td2);
-            console.log(j);
-            console.log(i);
             if (i===(size-1)) {
                 if (Math.ceil(i/2) !== j) {
                     let emptyTd = document.createElement('td');
@@ -201,6 +199,18 @@ const Output = {
         
         showingTable=true;
         
+    },
+    addDropNumber: (dropLink, dropAmount) => {
+        let dropNumberP = document.querySelector(`.${dropLink}`);
+        let newValue = parseInt(dropNumberP.textContent)+dropAmount;
+        dropNumberP.textContent = newValue;
+        
+        if (dropNumberP.classList.contains('fontSmall') !== true) {
+            if (newValue>99999) {
+                dropNumberP.className += ` fontSmall`;
+            }
+        }
+        
     }
 }
 
@@ -210,18 +220,23 @@ const Input = {
         for (let i=0; i<currLoot.length-currBoss.rolls; i+= currBoss.rolls) {
             let li = document.createElement('li');
             let len = currBoss.rolls;
-            
+                
             //append drop text (boss, (amount, loot * len)
             if (len === 1) {
                 li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]}`;
+                Output.addDropNumber(currLoot[i][3], currLoot[i][1]);
             } else if (len === 2) {
                 li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]} and ${currLoot[i+1][1]} ${currLoot[i+1][0]}`;
+                Output.addDropNumber(currLoot[i][3], currLoot[i][1]);
+                Output.addDropNumber(currLoot[i+1][3], currLoot[i+1][1]);
             } else if (len > 2) {
                 li.innerHTML = `${currBoss.name} dropped `;
                 for (let j=0; j<currBoss.rolls-1; j++) {
                     li.innerHTML += `${currLoot[i+j][1]} ${currLoot[i+j][0]}, `;
+                    Output.addDropNumber(currLoot[i+j][3], currLoot[i+j][1]);
                 }
                 li.innerHTML += `and ${currLoot[i+currBoss.rolls-1][1]} ${currLoot[i+currBoss.rolls-1][0]}.`;
+                Output.addDropNumber(currLoot[i+currBoss.rolls-1][3], currLoot[i+currBoss.rolls-1][1]);
             }
             ol.appendChild(li);
             }
@@ -236,8 +251,7 @@ const Input = {
         
         if (varButt.textContent === 'RESET') {
             resetTime();
-            this.resetAll();
-            bossSel.value = 'empty';   
+            this.resetAll(); 
             varButt.textContent = 'STOP';
         }
         
@@ -305,7 +319,9 @@ const Input = {
             alwaysDrops = [];
             Input.aDrops();
             alwaysDrops.forEach(alwaysdrop => currLoot.push(alwaysdrop));      
-            currLoot.push([currBoss.drops[dropIdx].name, dropNum, currBoss.drops[dropIdx].price || 0]);
+            currLoot.push([currBoss.drops[dropIdx].name, dropNum, currBoss.drops[dropIdx].price || 0, currBoss.drops[dropIdx].link]);
+            
+            Output.addDropNumber(currBoss.drops[dropIdx].link, dropNum)
             
             // or -1 for those without a  id value (coins, rare drop table 
             // and some others that we will ignore)
@@ -321,7 +337,7 @@ const Input = {
         let i=0;
         while (checkingAlways) {            
             if (currBoss.drops[i].rarity === 100) {
-                alwaysDrops.push([currBoss.drops[i].name, Input.dropAmount(i), currBoss.drops[i].price]);
+                alwaysDrops.push([currBoss.drops[i].name, Input.dropAmount(i), currBoss.drops[i].price, currBoss.drops[i].link]);
             } else {
                 checkingAlways = false;
             }
@@ -359,6 +375,11 @@ const Input = {
             errorText.appendChild(span);
             ol.innerHTML = '';
             errorDisplay = true;
+        }
+        if (showingTable) {
+                let lootTable = document.querySelector('.lootTable');
+                bgCont.removeChild(lootTable);
+                showingTable = false;
         }
     },
     
