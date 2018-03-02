@@ -389,7 +389,7 @@ const enemies = [
             },
             {
                 name: 'Adamant arrow(p++)',
-                link: 'Adamant arrowp',
+                link: 'Adamant_arrowp',
                 id: 5626,
                 dropAmount: [295, 300], 
                 rarity: 2/21
@@ -403,7 +403,7 @@ const enemies = [
             },
             {
                 name: `Dragon dagger(p++)`,
-                link: `Dragon dagger`,
+                link: `Dragon_dagger`,
                 id: 5698,
                 dropAmount: [1, 1],
                 rarity: 1/64,
@@ -445,7 +445,7 @@ const enemies = [
             }, 
             {
                 name: 'Adamant platebody',
-                name: 'Adamant_platebody',
+                link: 'Adamant_platebody',
                 id: 1123,
                 dropAmount: [1, 1],
                 rarity: 2/21,
@@ -500,7 +500,7 @@ const enemies = [
             }, 
             {
                 name: 'Blood rune',
-                name: 'Blood_rune',
+                link: 'Blood_rune',
                 id: 565,
                 dropAmount: [80, 90],
                 rarity: 1/64,
@@ -561,7 +561,7 @@ const enemies = [
             },
             {
                 name: `Pet k'ril tsutsaroth`,
-                link: `Pet_k'ril_tsutsaroth`,
+                link: `Pet_kril_tsutsaroth`,
                 dropAmount: [1, 1],
                 rarity: 1/5000,
             },

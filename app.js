@@ -21,7 +21,7 @@ let seconds = 0,
 //setup vars for loot
 let currBoss,
     currLoot = [],
-    dropChance = [],
+    dropChance = [], 
     alwaysDrops = [],
     errorDisplay = false,
     showingTable = false,
@@ -37,7 +37,7 @@ enemies.forEach((enemy,i) => {
 });
 
 
-        
+//variable for holding json data returned by API
 let currPrices;
 
 // this accesses the Runescape API to get the value of each item dynamically
@@ -294,12 +294,18 @@ const Input = {
             }   
             this.resetAll();
             currBoss = enemies[parseInt(bossSel.value)];
+            this.checkKph();
             this.aDrops();
             this.setupDropChance();
             Output.tableCreation(currBoss.drops.length);
         };
     },
-    
+    checkKph: () => {
+        let kph = document.querySelector('.kph').value;
+        if (kph !== '' || NaN) {
+            currBoss.killsph = kph;
+        }
+    },
     addLootToArr: () => {
         
         //this function matches the drop rarity up to the random number

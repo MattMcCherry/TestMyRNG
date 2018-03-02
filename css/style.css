@@ -39,8 +39,20 @@ select {
 }
 .bossContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+input {
+    width:92px;
+    margin-top: 10px;
+    background-color: #473f34;
+    color: #d8985b;
+    border-bottom:  3px solid rgba(0,0,0,.7);
+    border-right: 3px solid rgba(0,0,0,.7);
+    text-indent: 3px;
+    text-align: center;
 }
 
 h1 {
