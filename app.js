@@ -26,6 +26,7 @@ let currBoss,
     errorDisplay = false,
     showingTable = false,
     currTot = 0,
+    dropChanceMax = 0,
     totalGP = 0;
     
 //setup selection options
@@ -35,7 +36,6 @@ enemies.forEach((enemy,i) => {
                 option.value=i;
                 bossSel.appendChild(option);
 });
-
 
 //variable for holding json data returned by API
 let currPrices;
@@ -134,7 +134,6 @@ const Output = {
         let tr1 = document.createElement('tr');
         let tr2 = document.createElement('tr');
 
-        
         let i=0;
         
         for (i; i<size/2; i++) {
@@ -200,7 +199,6 @@ const Output = {
         
         if ((i-1)-j !== 0) {
             let emptyTd = document.createElement('td');
-
         }
         
         table.appendChild(tr1);
@@ -229,10 +227,10 @@ const Output = {
 const Input = {
     
     appendLoot: () => {
-        for (let i=0; i<currLoot.length-currBoss.rolls; i+= currBoss.rolls) {
+        for (let i=0; i<currLoot.length; i+= currBoss.rolls) {
             let li = document.createElement('li');
             let len = currBoss.rolls;
-                
+            
             //append drop text (boss, (amount, loot * len)
             if (len === 1) {
                 li.innerHTML = `${currBoss.name} dropped ${currLoot[i][1]} ${currLoot[i][0]}`;
@@ -318,7 +316,8 @@ const Input = {
         }
         for (let i=0; i<Math.floor(currBoss.killsph/4); i++) {
             
-            let num = Math.random();
+            let num = Math.random()*(dropChanceMax);
+            
             let drop = dropChance.filter(isBigEnough(num));
             let dropIdx = dropChance.indexOf(drop[0]);
             
@@ -375,6 +374,7 @@ const Input = {
             currTot = currNum;
             dropChance.push(currNum);            
         }
+        dropChanceMax = dropChance[dropChance.length-1]
     },
     
     resetAll: () => {
