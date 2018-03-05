@@ -45,7 +45,7 @@ let currPrices;
 // IIFE to get prices straight away
 
 (function fetchItemPrices() {
-    fetch(`https://rsbuddy.com/exchange/summary.json`)
+    fetch(`http://testmyrng.com/summary.JSON`)
     .then(res => res.json())
     .then(data => { currPrices = data; setPrices() })
     .catch(err => { throw err });
@@ -337,8 +337,6 @@ const Input = {
             Input.aDrops();
             alwaysDrops.forEach(alwaysdrop => currLoot.push(alwaysdrop));      
             currLoot.push([currBoss.drops[dropIdx].name, dropNum, currBoss.drops[dropIdx].price || 0, currBoss.drops[dropIdx].link]);
-            
-            Output.addDropNumber(currBoss.drops[dropIdx].link, dropNum)
             
             // or -1 for those without a  id value (coins, rare drop table 
             // and some others that we will ignore)
