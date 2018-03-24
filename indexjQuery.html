@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test My RNG</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="background container">
+            <div class="container">
+                <h1><span>Test My</span> RNG</h1>
+            </div>
+            <div id="stopwatch">
+                <div class="spinnerContainer">
+                    <div class="spinner"></div>
+                </div>  
+                <div class="counter">00: 00</div> 
+                <div class="lineBreak"></div>
+                    <div class="inputs">
+                        <div class="container butt">
+                            <button type="button" id="start-btn" class="btn">START</button>
+                            <button type="button" id="stop-btn" class="varbutt btn">STOP</button>
+                        </div>
+                    <p class="error"></p>
+                    <div class="bossContainer">
+                        <select class="boss" onchange="Input.checkInput();">
+                            <option value="empty">Select Your Boss</option>
+                        </select>
+                        <input class="kph" placeholder="Kills Per Hour">
+                    </div>                    
+                </div>
+                <div class="lineBreak"></div>
+                <p class="total">0gp</p>
+            </div>
+        <ol class="drops">
+        </ol>
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+   <script src="enemies.js"></script>
+    <script src="appjquery.js"></script>
+</body>
+</html>
