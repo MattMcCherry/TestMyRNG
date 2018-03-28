@@ -38,6 +38,7 @@ select {
     border-right: 3px solid rgba(0,0,0,.7);
 }
 .bossContainer {
+    margin-top: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,6 +54,10 @@ input {
     border-right: 3px solid rgba(0,0,0,.7);
     text-indent: 3px;
     text-align: center;
+}
+
+#kph {
+    width: 8em;
 }
 
 h1 {
@@ -293,6 +298,8 @@ li {
 }
 
 .error-container {
-    display: block;
+    display: none;
     height: 25px;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
