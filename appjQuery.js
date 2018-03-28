@@ -56,14 +56,86 @@ function displayError(errorStr) {
     }
 } // END OF DISPLAYERROR FUNC
 
+$.getJSON("summary.json", function(data) {
+    items = data;
+    $.each(enemies, function() {
+        $.each(this.drops, function () {
+            if (this.id !== undefined) {
+                this.price = items[this.id].buy_average;
+            } else {
+                this.price = 0;
+            }
+        })
+    });
+});
+
+// ******** DISPLAY FUNCTIONS ******** \\
+
+function resetDisplay() {
+    $('.total').text('0gp');
+    $('.drops').text('');
+}
+
+function createItemBox() {
+    var $flexContainer = $('<div />', {
+        "class": 'flex-container',
+    })
+    $flexContainer.insertAfter('#stopwatch');
+    
+    $(bossDrops).each(function(i) {
+        var id = this.id;
+        var bg = 'item-display tooltip';
+        
+        if (i % 2 === 0) {
+            bg = 'item-display tooltip darker-bg';
+        }
+        
+        if (this.id === undefined) {
+            id = this.link;
+        }
+        
+        var imgcont = $('<div />', {
+            "class": 'item-img-container',
+        });
+        
+        var img = $('<img />', {
+            src: `./imgs/icons/${id}.png`,
+        });
+        
+        var toolTipText = $('<span />', {
+            text: `${this.name}`,
+            "class": 'tooltiptext',
+        });
+        
+        var p = $('<p />', {
+            text: '0',
+            id: `${this.id}`,
+        })
+        
+        var flexItem = $('<div />', {
+            "class": bg,
+        });
+        
+        img.appendTo(imgcont);
+        
+        imgcont.appendTo(flexItem);
+        toolTipText.appendTo(flexItem);
+        p.appendTo(flexItem);
+        
+        flexItem.appendTo($('.flex-container'));
+    });
+}
+
+// ******** DISPLAY FUNCTIONS END ******** \\
+
+// ******** BOSS KILLING FUNCTIONS ******** \\
+
 //setup boss selector
 $(enemies).each(function(i) {
     $('#boss').append($('<option/>')
                      .attr('value', i)
                      .text(`${this.name}`));
 }); //ENEMIES EACH END
-
-// ******** BOSS KILLING FUNCTIONS ******** \\
 
 var items,
     kph,
@@ -76,9 +148,6 @@ var items,
     dropChanceMax = 0,
     totalGP = 0;
 
-$.getJSON("summary.json", function(data) {
-    items = data;
-})
 
 function randomNumberGenerator(min, max) {
     return (Math.random()*(max-min)+min);
@@ -87,6 +156,7 @@ function randomNumberGenerator(min, max) {
 function setupBossVars(bossIdx) {
     currBoss = enemies[bossIdx],
     kph = $('#kph').val() || enemies[bossIdx].killsph;
+    
     $.each(currBoss.drops, function() {
         if (this.rarity === 100) {
             alwaysDrop.push(this);
@@ -103,7 +173,6 @@ function setupBossVars(bossIdx) {
 }
 
 function resetBossVars() {
-    items,
     kph,
     currBoss,
     bossDrops = [],
@@ -113,11 +182,8 @@ function resetBossVars() {
     dropChanceMax = 0,
     totalGP = 0;
     
-    $('.total').text('0gp');
-    $('.drops').text('');
+    resetDisplay();
 }
-
-
 
 function simKill() {
     
@@ -137,7 +203,9 @@ function simKill() {
     }
     
     function displayDrop(dropText) {
+        var gpStr = totalGP.toFixed().replace(/(\d)(?=(\d{3})+(,|$))/g, '$1,');
         $('ol').append(dropText);
+        $('.total').text(`${gpStr}gp`);
     }
     
     
@@ -148,12 +216,11 @@ function simKill() {
     }
     
     var dropStr = `<li>${currBoss.name} dropped`;
+    var dropGP = 0;
     
     $.each(alwaysDrop, function() {
         
         var dropAmount = Math.floor(randomNumberGenerator(this.dropAmount[0], this.dropAmount[1]));
-        
-        console.log(dropAmount);
         
         dropStr += ` ${dropAmount} ${this.name}`;
         if (alwaysDrop.length + currBoss.rolls > 2) {
@@ -162,37 +229,40 @@ function simKill() {
     });
     
     $.each(currLoot, function(i) {
-        
         var dropAmount = Math.floor(randomNumberGenerator(this.dropAmount[0], this.dropAmount[1]));
+        totalGP += dropAmount*this.price;
         
         if (i === currLoot.length-1) {
             dropStr += ` and ${dropAmount} ${this.name}.`;
         } else if (i === currLoot.length-2) {
-            dropStr += ` ${this.name}`;
+            dropStr += ` ${dropAmount} ${this.name}`;
         } else {
-            dropStr += ` ${this.name},`;
+            dropStr += ` ${dropAmount} ${this.name},`;
         }
         
     });
     
-    dropStr += `</li>`
+    dropStr += `</li>`;
     displayDrop(dropStr);
 }
 
+// ******** BOSS KILLING FUNCTIONS END ******** \\
+
 
 // ******** EVENT LISTENERS ******** \\
+
 $('.container .butt').on('click', 'button', function() {
     
     if ($(this).text() === "START") {
         var bossVal = $('#boss').val();
+        $('.varbutt').text('STOP');
         if (bossVal === 'empty') {
             displayError('<p>Please select your boss before starting!</p>');
             stopStopWatch();
             resetStopWatch();
+            resetDisplay();
         } else { 
-        console.log('do everything else');
         startStopWatch();
-        $('.varbutt').text('STOP');
         resetBossVars();
         setupBossVars(bossVal);
         }
@@ -206,8 +276,10 @@ $('.container .butt').on('click', 'button', function() {
     } else if ($(this).text() === "RESET") {
         if (!counting) {
             resetStopWatch();
-            resetBossVars();
+            resetDisplay();
             $(this).text('STOP');
         }
     }
-}); // START && STOP END ON CLICK
+});
+
+// ******** EVENT LISTENERS END ******** \\
