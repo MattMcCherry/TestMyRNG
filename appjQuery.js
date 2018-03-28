@@ -51,7 +51,13 @@ function displayError(errorStr) {
             displayingError = false;
         }); // fadeOut end
     }
-}
+} // END OF DISPLAYERROR FUNC
+
+var items;
+
+$.getJSON("summary.json", function(data) {
+    items = data;
+})
 
 //setup boss selector
 $(enemies).each(function(i) {
