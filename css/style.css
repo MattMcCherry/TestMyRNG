@@ -287,3 +287,12 @@ li {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     margin: 0 5px;
 }
+
+.error {
+    display: none;
+}
+
+.error-container {
+    display: block;
+    height: 25px;
+}
