@@ -1,7 +1,6 @@
 @font-face {
     font-family: "Runescape_uf";
-    src: url('./fonts/runescape_uf.ttf') format('truetype'),
-        url('./fonts/runescape_uf.woff');
+    src: url('./fonts/runescape_uf.woff');
 }
 
 * {
