@@ -254,6 +254,7 @@ function simKill() {
 $('.container .butt').on('click', 'button', function() {
     
     if ($(this).text() === "START") {
+        if (!counting) {
         var bossVal = $('#boss').val();
         $('.varbutt').text('STOP');
         if (bossVal === 'empty') {
